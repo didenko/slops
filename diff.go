@@ -1,4 +1,7 @@
-package slops
+// Copyright 2017 Vlad Didenko. All rights reserved.
+// See the included LICENSE.md file for licensing information
+
+package slops // import "didenko.com/go/slops"
 
 // Diff takes sorted slices of strings and returns the non-
 // overlapping entries

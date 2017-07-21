@@ -1,6 +1,9 @@
-package slops
+// Copyright 2017 Vlad Didenko. All rights reserved.
+// See the included LICENSE.md file for licensing information
 
-// Exclude returns a new slice where strings in the regects slice
+package slops // import "didenko.com/go/slops"
+
+// Exclude returns a new slice where strings in the rejects slice
 // removed from the src slice. Both slices expected to be sorted.
 func Exclude(src, rejects []string) []string {
 
