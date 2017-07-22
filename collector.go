@@ -8,3 +8,9 @@ package slops // import "didenko.com/go/slops"
 type Collector interface {
 	Collect(dest []string, item string) []string
 }
+
+type getAll struct{}
+
+func (ga *getAll) Collect(dest []string, item string) []string {
+	return append(dest, item)
+}

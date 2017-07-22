@@ -10,7 +10,8 @@ func Exclude(src, rejects []string) []string {
 }
 
 // CollectExcluded applies a Collector to every item which is in
-// src slice but not in the rejects slice.
+// src slice but not in the rejects slice. Both input slices are
+// expected to be sorted.
 func CollectExcluded(src, rejects []string, c Collector) []string {
 
 	filtered := make([]string, 0)
@@ -33,10 +34,4 @@ func CollectExcluded(src, rejects []string, c Collector) []string {
 	}
 
 	return filtered
-}
-
-type getAll struct{}
-
-func (ga *getAll) Collect(dest []string, item string) []string {
-	return append(dest, item)
 }
