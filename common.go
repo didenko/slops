@@ -12,6 +12,13 @@ func Common(left, right []string) []string {
 	return CollectCommon(left, right, &getAll{})
 }
 
+// CommonUnique gathers same entries from two sorted slices into
+// a new slice. The order is preserved. Duplicates are reduced to
+// a single item
+func CommonUnique(left, right []string) []string {
+	return CollectCommon(left, right, &getUnique{})
+}
+
 // CollectCommon applies a Collector to every item which is
 // in both left and right slices. Both input slices are
 // expected to be sorted.
