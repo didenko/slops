@@ -6,12 +6,12 @@ package slops // import "didenko.com/go/slops"
 // Unique returns a new sorted slice without duplicates from
 // the original sorted slice.
 func Unique(in []string) []string {
-	return CollectUnique(in, &getAll{})
+	return CollectUnique(in, getAll)
 }
 
 // CollectUnique applies a Collector to every unique item in
 // the sorted input slice.
-func CollectUnique(in []string, c Collector) []string {
+func CollectUnique(in []string, collect Collector) []string {
 
 	uniq := make([]string, 0)
 
@@ -19,11 +19,11 @@ func CollectUnique(in []string, c Collector) []string {
 		return uniq
 	}
 
-	uniq = c.Collect(uniq, in[0])
+	uniq = collect(uniq, in[0])
 
 	for i := 1; i < len(in); i++ {
 		if in[i] != in[i-1] {
-			uniq = c.Collect(uniq, in[i])
+			uniq = collect(uniq, in[i])
 		}
 	}
 

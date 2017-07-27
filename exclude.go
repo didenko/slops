@@ -6,20 +6,20 @@ package slops // import "didenko.com/go/slops"
 // Exclude returns a new slice where strings in the rejects slice
 // removed from the src slice. Both slices expected to be sorted.
 func Exclude(src, rejects []string) []string {
-	return CollectExcluded(src, rejects, &getAll{})
+	return CollectExcluded(src, rejects, getAll)
 }
 
 // CollectExcluded applies a Collector to every item which is in
 // src slice but not in the rejects slice. Both input slices are
 // expected to be sorted.
-func CollectExcluded(src, rejects []string, c Collector) []string {
+func CollectExcluded(src, rejects []string, collect Collector) []string {
 
 	filtered := make([]string, 0)
 
 	for i, j := 0, 0; i < len(src); {
 
 		if j >= len(rejects) || src[i] < rejects[j] {
-			filtered = c.Collect(filtered, src[i])
+			filtered = collect(filtered, src[i])
 			i++
 			continue
 		}

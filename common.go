@@ -9,20 +9,20 @@ package slops // import "didenko.com/go/slops"
 // a new slice. The order is preserved. The lesser number of
 // duplicates is preserved
 func Common(left, right []string) []string {
-	return CollectCommon(left, right, &getAll{})
+	return CollectCommon(left, right, getAll)
 }
 
 // CommonUnique gathers same entries from two sorted slices into
 // a new slice. The order is preserved. Duplicates are reduced to
 // a single item
 func CommonUnique(left, right []string) []string {
-	return CollectCommon(left, right, &getUnique{})
+	return CollectCommon(left, right, getUnique)
 }
 
 // CollectCommon applies a Collector to every item which is
 // in both left and right slices. Both input slices are
 // expected to be sorted.
-func CollectCommon(left, right []string, c Collector) []string {
+func CollectCommon(left, right []string, collect Collector) []string {
 
 	common := make([]string, 0)
 
@@ -37,7 +37,7 @@ func CollectCommon(left, right []string, c Collector) []string {
 			continue
 		}
 
-		common = c.Collect(common, left[i])
+		common = collect(common, left[i])
 		i++
 		j++
 	}

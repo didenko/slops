@@ -8,8 +8,7 @@ package slops // import "didenko.com/go/slops"
 // `CollectDifferent` documentation for handling duplicates
 // in the input slices
 func Diff(left, right []string) (leftOnly, rightOnly []string) {
-	ga := &getAll{}
-	return CollectDifferent(left, right, ga, ga)
+	return CollectDifferent(left, right, getAll, getAll)
 }
 
 // CollectDifferent applies related Collectors to every item which is
@@ -21,21 +20,21 @@ func Diff(left, right []string) (leftOnly, rightOnly []string) {
 // output will be {{}, {Collect("-")}}. In other words,
 // Collector will be invoked on an excess number of duplicate
 // items
-func CollectDifferent(left, right []string, lc, rc Collector) (leftColl, rightColl []string) {
+func CollectDifferent(left, right []string, lcollect, rcollect Collector) (onlyLeft, onlyRight []string) {
 
-	leftColl = make([]string, 0)
-	rightColl = make([]string, 0)
+	onlyLeft = make([]string, 0)
+	onlyRight = make([]string, 0)
 
 	for l, r := 0, 0; l < len(left) || r < len(right); {
 
 		if r < len(right) && (l == len(left) || left[l] > right[r]) {
-			rightColl = rc.Collect(rightColl, right[r])
+			onlyRight = rcollect(onlyRight, right[r])
 			r++
 			continue
 		}
 
 		if l < len(left) && (r == len(right) || left[l] < right[r]) {
-			leftColl = lc.Collect(leftColl, left[l])
+			onlyLeft = lcollect(onlyLeft, left[l])
 			l++
 			continue
 		}
@@ -44,5 +43,5 @@ func CollectDifferent(left, right []string, lc, rc Collector) (leftColl, rightCo
 		r++
 	}
 
-	return leftColl, rightColl
+	return onlyLeft, onlyRight
 }
