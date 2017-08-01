@@ -37,3 +37,7 @@ func getUnique(dest []string, item string) []string {
 	}
 	return append(dest, item)
 }
+
+func noop(dest []string, item string) []string {
+	return dest
+}

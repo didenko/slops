@@ -21,24 +21,5 @@ func CommonUnique(left, right []string) []string {
 // in both left and right slices. Both input slices are
 // expected to be sorted.
 func CollectCommon(left, right []string, collect Collector) []string {
-
-	common := make([]string, 0)
-
-	for i, j := 0, 0; i < len(left) && j < len(right); {
-		if left[i] < right[j] {
-			i++
-			continue
-		}
-
-		if left[i] > right[j] {
-			j++
-			continue
-		}
-
-		common = collect(common, left[i])
-		i++
-		j++
-	}
-
-	return common
+	return CollectVariety(left, right, noop, collect, noop)
 }
