@@ -5,7 +5,8 @@ package slops // import "didenko.com/go/slops"
 
 // ExcludeAll returns a new slice where all strings from the
 // rejects slice are removed from the src slice, regardless of
-// how many times they occur in either slice. Both slices
+// how many times they occur in either slice. Non-excluded
+// duplicates in the src slice are preserved. Both slices
 // are expected to be sorted.
 func ExcludeAll(src, rejects []string) []string {
 	return CollectExcludedAll(src, rejects, getAll)
@@ -14,7 +15,8 @@ func ExcludeAll(src, rejects []string) []string {
 // CollectExcludedAll applies a Collector to every item which is
 // in src slice but not in the rejects slice. All strings from
 // the rejects slice are removed from the src slice, regardless
-// of how many times they occur in either slice. Both input slices
+// of how many times they occur in either slice. Non-excluded
+// duplicates in the src slice are preserved. Both input slices
 // are expected to be sorted.
 func CollectExcludedAll(src, rejects []string, collect Collector) []string {
 

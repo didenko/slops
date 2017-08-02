@@ -26,6 +26,7 @@ var excludeAllTestScript = []excludeUseCase{
 	{[]string{"a", "b", "b", "c"}, []string{"b", "c"}, []string{"a"}},
 	{[]string{"a", "b"}, []string{"b", "c"}, []string{"a"}},
 	{[]string{"b", "c"}, []string{"a", "b"}, []string{"c"}},
+	{[]string{"b", "c", "c"}, []string{"a", "b"}, []string{"c", "c"}},
 }
 
 func TestExcludeAll(t *testing.T) {
@@ -60,6 +61,7 @@ var excludeByCountTestScript = []excludeUseCase{
 	{[]string{"a", "b", "b", "c"}, []string{"b", "c"}, []string{"a", "b"}}, // differs from ExcludeAll
 	{[]string{"a", "b"}, []string{"b", "c"}, []string{"a"}},
 	{[]string{"b", "c"}, []string{"a", "b"}, []string{"c"}},
+	{[]string{"b", "c", "c"}, []string{"a", "b"}, []string{"c", "c"}},
 }
 
 func TestExcludeByCount(t *testing.T) {
