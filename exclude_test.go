@@ -14,7 +14,7 @@ type excludeUseCase struct {
 	expect  []string
 }
 
-var excludeTestScript = []excludeUseCase{
+var excludeAllTestScript = []excludeUseCase{
 	{[]string{}, []string{}, []string{}},
 	{[]string{}, []string{"", "-"}, []string{}},
 	{[]string{"0"}, []string{}, []string{"0"}},
@@ -28,9 +28,43 @@ var excludeTestScript = []excludeUseCase{
 	{[]string{"b", "c"}, []string{"a", "b"}, []string{"c"}},
 }
 
-func TestExclude(t *testing.T) {
-	for uci, uc := range excludeTestScript {
-		result := Exclude(uc.source, uc.rejects)
+func TestExcludeAll(t *testing.T) {
+	for uci, uc := range excludeAllTestScript {
+		result := ExcludeAll(uc.source, uc.rejects)
+
+		if !reflect.DeepEqual(uc.expect, result) {
+			t.Error("At index", uci, "result", result, "does not match expected", uc.expect)
+		}
+	}
+}
+
+func TestExcludeAllContrived(t *testing.T) {
+	for uci, uc := range excludeAllTestScript {
+		result := ExcludeAllContrived(uc.source, uc.rejects)
+
+		if !reflect.DeepEqual(uc.expect, result) {
+			t.Error("At index", uci, "result", result, "does not match expected", uc.expect)
+		}
+	}
+}
+
+var excludeByCountTestScript = []excludeUseCase{
+	{[]string{}, []string{}, []string{}},
+	{[]string{}, []string{"", "-"}, []string{}},
+	{[]string{"0"}, []string{}, []string{"0"}},
+	{[]string{"0"}, []string{"0"}, []string{}},
+	{[]string{"1"}, []string{"0"}, []string{"1"}},
+	{[]string{"a", "b"}, []string{"a", "b"}, []string{}},
+	{[]string{"a", "b"}, []string{"a", "a"}, []string{"b"}},
+	{[]string{"a", "a"}, []string{"a"}, []string{"a"}},                     // differs from ExcludeAll
+	{[]string{"a", "b", "b", "c"}, []string{"b", "c"}, []string{"a", "b"}}, // differs from ExcludeAll
+	{[]string{"a", "b"}, []string{"b", "c"}, []string{"a"}},
+	{[]string{"b", "c"}, []string{"a", "b"}, []string{"c"}},
+}
+
+func TestExcludeByCount(t *testing.T) {
+	for uci, uc := range excludeByCountTestScript {
+		result := CollectExcludedByCount(uc.source, uc.rejects, getAll)
 
 		if !reflect.DeepEqual(uc.expect, result) {
 			t.Error("At index", uci, "result", result, "does not match expected", uc.expect)
