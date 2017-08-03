@@ -73,3 +73,55 @@ func TestExcludeByCount(t *testing.T) {
 		}
 	}
 }
+
+var benchSrc = []string{
+	"./slops",
+	"./slops",
+	"./slops",
+	"./slops",
+	"./slops",
+	"./slops/.travis.yml",
+	"./slops/collector.go",
+	"./slops/common.go",
+	"./slops/common_test.go",
+	"./slops/diff.go",
+	"./slops/diff_test.go",
+	"./slops/exclude.go",
+	"./slops/exclude_test.go",
+	"./slops/exclude_test.go",
+	"./slops/exclude_test.go",
+	"./slops/exclude_test.go",
+	"./slops/exclude_test.go",
+	"./slops/merge.go",
+	"./slops/merge_test.go",
+	"./slops/merge_test.go",
+	"./slops/unique.go",
+	"./slops/unique_test.go",
+	"./slops/variety.go",
+	"./slops/variety_test.go",
+}
+
+var benchRejects = []string{
+	"./slops",
+	"./slops",
+	"./slops/.travis.yml",
+	"./slops/exclude_test.go",
+	"./slops/merge_test.go",
+	"./slops/merge_test.go",
+	"./slops/unknown_test.go",
+}
+
+// Needed so that compiler optimizations do not eliminate benchmarks
+var benchResult []string
+
+func BenchmarkExcludeAll(b *testing.B) {
+	for n := 0; n < b.N; n++ {
+		benchResult = ExcludeAll(benchSrc, benchRejects)
+	}
+}
+
+func BenchmarkExcludeAllContrived(b *testing.B) {
+	for n := 0; n < b.N; n++ {
+		benchResult = ExcludeAllContrived(benchSrc, benchRejects)
+	}
+}
