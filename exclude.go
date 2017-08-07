@@ -9,7 +9,7 @@ package slops // import "go.didenko.com/slops"
 // duplicates in the src slice are preserved. Both slices
 // are expected to be sorted.
 func ExcludeAll(src, rejects []string) []string {
-	return CollectExcludedAll(src, rejects, getAll)
+	return CollectExcludedAll(src, rejects, GetAll)
 }
 
 // CollectExcludedAll applies a Collector to every item which is
@@ -47,14 +47,14 @@ func CollectExcludedAll(src, rejects []string, collect Collector) []string {
 // duplicates removed from the src slice as occur in the rejects
 // slice. Both input slices are expected to be sorted.
 func CollectExcludedByCount(src, rejects []string, collect Collector) []string {
-	return CollectVariety(src, rejects, collect, noop, noop)
+	return CollectVariety(src, rejects, collect, NoOp, NoOp)
 }
 
 // ExcludeAllContrived is a companion function to
 // CollectExcludedAllContrived. This is a nerdy exersize
 // and is not intended for production use.
 func ExcludeAllContrived(src, rejects []string) []string {
-	return CollectExcludedAllContrived(src, rejects, getAll)
+	return CollectExcludedAllContrived(src, rejects, GetAll)
 }
 
 // CollectExcludedAllContrived has exactly the same functionality
@@ -78,5 +78,5 @@ func CollectExcludedAllContrived(src, rejects []string, collect Collector) []str
 			lastExcluded = item
 			return dest
 		},
-		noop)
+		NoOp)
 }

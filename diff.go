@@ -8,7 +8,7 @@ package slops // import "go.didenko.com/slops"
 // `CollectDifferent` documentation for handling duplicates
 // in the input slices
 func Diff(left, right []string) (leftOnly, rightOnly []string) {
-	return CollectDifferent(left, right, getAll, getAll)
+	return CollectDifferent(left, right, GetAll, GetAll)
 }
 
 // CollectDifferent applies related Collectors to every item which is

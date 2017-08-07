@@ -27,17 +27,23 @@ package slops // import "go.didenko.com/slops"
 // implementations can be used by other slops functions
 type Collector func(dest []string, item string) []string
 
-func getAll(dest []string, item string) []string {
+// GetAll is a Collector which indiscriminately appends all
+// provided items to the destination slice
+func GetAll(dest []string, item string) []string {
 	return append(dest, item)
 }
 
-func getUnique(dest []string, item string) []string {
+// GetUnique is a Collector which only applies non-repeating
+// items to the destination slice
+func GetUnique(dest []string, item string) []string {
 	if len(dest) > 0 && item == dest[len(dest)-1] {
 		return dest
 	}
 	return append(dest, item)
 }
 
-func noop(dest []string, item string) []string {
+// NoOp is a Collector which returns the destination slice
+// unmodified, effectively discarding all candidate items
+func NoOp(dest []string, item string) []string {
 	return dest
 }

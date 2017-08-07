@@ -8,7 +8,7 @@ package slops // import "go.didenko.com/slops"
 // maximum numbers of duplicate strings between the original
 // slices. Both left and right slices are expected to be sorted.
 func Merge(left, right []string) []string {
-	return CollectVariety(left, right, getAll, getAll, getAll)
+	return CollectVariety(left, right, GetAll, GetAll, GetAll)
 }
 
 // MergeUnique returns a slice with a union of strings in slices.
@@ -16,5 +16,5 @@ func Merge(left, right []string) []string {
 // duplicate strings in the original slices. Both left
 // and right slices are expected to be sorted.
 func MergeUnique(left, right []string) []string {
-	return CollectVariety(left, right, getUnique, getUnique, getUnique)
+	return CollectVariety(left, right, GetUnique, GetUnique, GetUnique)
 }

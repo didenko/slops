@@ -6,7 +6,7 @@ package slops // import "go.didenko.com/slops"
 // Unique returns a new sorted slice without duplicates from
 // the original sorted slice.
 func Unique(in []string) []string {
-	return CollectUnique(in, getAll)
+	return CollectUnique(in, GetAll)
 }
 
 // CollectUnique applies a Collector to every unique item in

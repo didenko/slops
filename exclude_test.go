@@ -66,7 +66,7 @@ var excludeByCountTestScript = []excludeUseCase{
 
 func TestExcludeByCount(t *testing.T) {
 	for uci, uc := range excludeByCountTestScript {
-		result := CollectExcludedByCount(uc.source, uc.rejects, getAll)
+		result := CollectExcludedByCount(uc.source, uc.rejects, GetAll)
 
 		if !reflect.DeepEqual(uc.expect, result) {
 			t.Error("At index", uci, "result", result, "does not match expected", uc.expect)
