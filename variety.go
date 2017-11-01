@@ -1,7 +1,7 @@
 // Copyright 2017 Vlad Didenko. All rights reserved.
 // See the included LICENSE.md file for licensing information
 
-package slops // import "didenko.com/go/slops"
+package slops // import "go.didenko.com/slops"
 
 // CollectVariety applies a Collector to every item in left and
 // right slices. Common items are collected as many times as

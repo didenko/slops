@@ -1,5 +1,5 @@
 language: go
-go_import_path: didenko.com/go/slops
+go_import_path: go.didenko.com/slops
 
 go:
   - 1.7.x

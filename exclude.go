@@ -1,7 +1,7 @@
 // Copyright 2017 Vlad Didenko. All rights reserved.
 // See the included LICENSE.md file for licensing information
 
-package slops // import "didenko.com/go/slops"
+package slops // import "go.didenko.com/slops"
 
 // ExcludeAll returns a new slice where all strings from the
 // rejects slice are removed from the src slice, regardless of

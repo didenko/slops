@@ -1,7 +1,7 @@
 // Copyright 2017 Vlad Didenko. All rights reserved.
 // See the included LICENSE.md file for licensing information
 
-package slops // import "didenko.com/go/slops"
+package slops // import "go.didenko.com/slops"
 
 // Common gathers same entries from two sorted slices into
 // a new slice. The order is preserved. The lesser number of

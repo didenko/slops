@@ -21,7 +21,7 @@
 // A good way to follow the suggested workflow is to see how the
 // `MergeUnique` function uses `CollectVariety` with `getUnique`
 // parameter.
-package slops // import "didenko.com/go/slops"
+package slops // import "go.didenko.com/slops"
 
 // Collector is a type for function parameters so that
 // implementations can be used by other slops functions
