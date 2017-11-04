@@ -51,7 +51,7 @@ func CollectExcludedByCount(src, rejects []string, collect Collector) []string {
 }
 
 // ExcludeAllContrived is a companion function to
-// CollectExcludedAllContrived. This is a nerdy exersize
+// CollectExcludedAllContrived. This is a nerdy exercise
 // and is not intended for production use.
 func ExcludeAllContrived(src, rejects []string) []string {
 	return CollectExcludedAllContrived(src, rejects, GetAll)
@@ -62,7 +62,7 @@ func ExcludeAllContrived(src, rejects []string) []string {
 // use cases) but is slower and is presented to demonstrate how
 // similar effects can be achieved from the generalised function
 // CollectVariety via functional programming means. This is merely
-// a nerdy exersize and is not intended for production use.
+// a nerdy exercise and is not intended for production use.
 func CollectExcludedAllContrived(src, rejects []string, collect Collector) []string {
 	var lastExcluded string
 	return CollectVariety(

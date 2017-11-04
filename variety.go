@@ -5,7 +5,7 @@ package slops // import "go.didenko.com/slops"
 
 // CollectVariety applies a Collector to every item in left and
 // right slices. Common items are collected as many times as
-// there are common occurences by the related collector. Non-common
+// there are common occurrences by the related collector. Non-common
 // items each, with their duplicates which are extra to the common
 // items, are collected by related leftOnly and rightOnly Collectors.
 // Both left and right input slices are expected to be sorted.
